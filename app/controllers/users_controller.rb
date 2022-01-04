@@ -1,33 +1,41 @@
 class UsersController < ApplicationController
 
-    # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+    #!------MUST BE REMOVED BEFORE FINISH-------->
+    skip_before_action :authenticate_user
+    #!------MUST BE REMOVED BEFORE FINISH--------^
 
+    def index
+        render json: User.all
+    end
+    
     def show
-        user = User.find_by(id:params[:id])
-        render json: user
+        if current_user
+            render json: current_user, status: :ok
+        else
+            render json: "No current session stored", status: :unauthorized
+        end
     end
-
-    def create
-        user = User.create!(user_params)
-        render json: user, status: :created
-    end
-
+    
     def create
         user = User.create(user_params)
         if user.valid?
-            session[:user_id] = user.id  
+            session[:user_id] = user.id
             render json: user, status: :created
+        else
+            render json: user.errors.full_messages, status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        user = User.find(params[:id]) 
+        user.destroy
+        head :no_content
     end
 
 private
 
     def user_params
-        params.permit(:name, :password, :age)
+        params.permit(:username, :password, :age)
     end
-
-    # def render_unprocessable_entity(invalid)
-    #     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
-    # end
 
 end

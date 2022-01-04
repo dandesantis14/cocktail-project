@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :password, :birthdate
+  attributes :id, :username, :password, :age
 end
