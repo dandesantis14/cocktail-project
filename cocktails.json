@@ -317,7 +317,7 @@
             "strImageAttribution": null,
             "strCreativeCommonsConfirmed": "No",
             "dateModified": "2016-07-18 22:31:38"
-        },
+        },{
         "idDrink": "13899",
         "strDrink": "3 Wise Men",
         "strDrinkAlternate": null,
@@ -9803,7 +9803,7 @@
         "strImageAttribution": null,
         "strCreativeCommonsConfirmed": "No",
         "dateModified": "2017-02-20 15:06:06"
-    }{
+    },{
         "idDrink": "16262",
         "strDrink": "H.D.",
         "strDrinkAlternate": null,
