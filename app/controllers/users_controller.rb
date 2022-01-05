@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
     #!------MUST BE REMOVED BEFORE FINISH-------->
     skip_before_action :authenticate_user
-    #!------MUST BE REMOVED BEFORE FINISH--------^
+    #!------MUST BE REMOVED BEFORE FINISH-------->
 
     def index
         render json: User.all
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 private
 
     def user_params
-        params.permit(:username, :password, :age)
+        params.permit(:username, :age)
     end
 
 end

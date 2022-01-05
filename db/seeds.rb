@@ -9,7 +9,7 @@
 puts "Seeding Data"
 
 u1 = User.create(username:'David', password:'password0', age:28)
-u2  = User.create(username:'Daniel', password:'password1', age:28)
+u2 = User.create(username:'Daniel', password:'password1', age:28)
 u3 = User.create(username:'Michael', password:'password2', age:28)
 u4 = User.create(username:'Ollie', password:'password3', age:28)
 u5 = User.create(username:'Steve', password:'password4', age:28)

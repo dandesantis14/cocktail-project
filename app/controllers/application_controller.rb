@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
   
-  before_action :authenticate_user
-
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
-
+  
+  before_action :authenticate_user
+  
 private
 
   def invalid_record(invalid)
@@ -19,4 +18,5 @@ private
   def authenticate_user
     return render json: {error: "Not authorized"}, status: :unauthorized unless current_user
   end
+
 end

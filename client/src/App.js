@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import LoggedOutLanding from "./components/LoggedOutLanding";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
+  console.log(currentUser);
+  useEffect(() => {
+    fetch("/me", {
+      credentials: "include",
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+          setAuthenticated(true);
+        });
+      } else {
+        setAuthenticated(true);
+      }
+    });
+  }, []);
+
+  if (!authenticated) {
+    return <div></div>;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Cocktail Catalogger</h1>
+      <Router>
+        {currentUser ? (
+          <HomePage
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+          />
+        ) : (
+          <LoggedOutLanding setCurrentUser={setCurrentUser} />
+        )}
+      </Router>
     </div>
   );
 }

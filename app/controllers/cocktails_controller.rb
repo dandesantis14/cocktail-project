@@ -3,6 +3,10 @@ class CocktailsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
+    #!------MUST BE REMOVED BEFORE FINISH-------->
+    # skip_before_action :authenticate_user
+    #!------MUST BE REMOVED BEFORE FINISH-------->
+
     def index
         render json: Cocktail.all
     end
