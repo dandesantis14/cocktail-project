@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // import { useHistory } from 'react-router-dom'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function LoginPage({ setCurrentUser }) {
     const [loginData, setLoginData] = useState({
@@ -54,7 +54,7 @@ function LoginPage({ setCurrentUser }) {
                     </div>
                     <input type="submit" className="submit" value="Sign in" />
                 </form>
-                {/* <div className="link-text"> Need an account ? <Link className="reg-link" to="/register">Sign up now</Link></div> */}
+                <div className="link-text"> Need an account ? <Link className="reg-link" to="/signup">Sign up now</Link></div>
             </div>
         </div>
     )

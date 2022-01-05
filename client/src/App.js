@@ -6,7 +6,7 @@ import LoggedOutLanding from "./components/LoggedOutLanding";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
-  console.log(currentUser);
+
   useEffect(() => {
     fetch("/me", {
       credentials: "include",

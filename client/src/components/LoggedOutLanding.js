@@ -2,23 +2,21 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginPage from "./LoginPage";
-// import SignupForm from "./SignupForm";
+import SignUpPage from "./SignUpPage";
 
 function LoggedOutLanding({ setCurrentUser }) {
     return (
         <div>
             <Routes>
                 <Route
-                    exact
                     path="/"
                     element={<LoginPage setCurrentUser={setCurrentUser} />}
                 />
 
-                {/* <Route
-                    exact
+                <Route
                     path="/signup"
-                    element={<SignupForm setCurrentUser={setCurrentUser} />}
-                /> */}
+                    element={<SignUpPage setCurrentUser={setCurrentUser} />}
+                />
             </Routes>
         </div>
     );

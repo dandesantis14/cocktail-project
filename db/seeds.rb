@@ -8,11 +8,34 @@
 
 puts "Seeding Data"
 
+all_cocktails = JSON.parse(File.read(Rails.root.join('./cocktails.json')))['drinks']
+
+all_cocktails.each do |cocktail|
+    all_ingredients = '';
+
+    for num in 1..15
+        if cocktail[ 'strIngredient'+ num.to_s]
+            all_ingredients = "#{all_ingredients} #{cocktail['strMeasure'+num.to_s]}: #{cocktail['strIngredient'+num.to_s]},"
+        else
+            break
+        end
+    end
+
+    Cocktail.create(
+        name: cocktail["strDrink"],
+        instructions: cocktail["strInstructions"],
+        image: cocktail["strDrinkThumb"],
+        rating: 5,
+        ingredients: all_ingredients
+    )
+end
+
+
 u1 = User.create(username:'David', password:'password0', age:28)
 u2 = User.create(username:'Daniel', password:'password1', age:28)
 u3 = User.create(username:'Michael', password:'password2', age:28)
 u4 = User.create(username:'Ollie', password:'password3', age:28)
-u5 = User.create(username:'Steve', password:'password4', age:28)
+u5 = User.create(username:'Steve', password:'password4', age:28) 
 
 c1 = Cocktail.create(name:'Gin and Tonic', instructions:'Muddle one lime wedge in bottom of glass. Add gin and tonic, stir and garnish with lime wedge', rating:4.5, ingredients:'2 oz gin, 4 oz tonic water, 2 lime wedge')
 c2 = Cocktail.create(name:'Rum and Coke', instructions:'Muddle one lime wedge in bottom of glass. Add gin and tonic, stir and garnish with lime wedge', rating:4.5, ingredients:'2 oz gin, 4 oz tonic water, 2 lime wedge')
