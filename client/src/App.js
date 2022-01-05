@@ -6,6 +6,7 @@ import LoggedOutLanding from "./components/LoggedOutLanding";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
+  const [cocktailList, setCocktailList] = useState([])
 
   useEffect(() => {
     fetch("/me", {
@@ -22,6 +23,12 @@ function App() {
     });
   }, []);
 
+  useEffect(()=> {
+    fetch("/cocktails")
+    .then(resp => resp.json())
+    .then(data => setCocktailList(data))
+    },[])
+
   if (!authenticated) {
     return <div></div>;
   }
@@ -33,6 +40,7 @@ function App() {
           <HomePage
             setCurrentUser={setCurrentUser}
             currentUser={currentUser}
+            cocktailList={cocktailList}
           />
         ) : (
           <LoggedOutLanding setCurrentUser={setCurrentUser} />
