@@ -24,7 +24,7 @@ class CocktailsController < ApplicationController
     def update
         cocktail = find_cocktail
         cocktail.update(cocktail_params)
-        render json: toy
+        render json: cocktail
     end
 
     def destroy

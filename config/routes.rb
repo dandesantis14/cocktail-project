@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
   get '/me', to: 'users#show'
+  get '/reviews/users/:id', to: 'reviews#user_show'
+  get '/reviews/cocktails/:id', to: 'reviews#cocktail_show'
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router'
+import ReviewContainer from './ReviewContainer'
+
 function Cocktail({name, rating, ingredients, instructions, image, id, handleDeleteCocktail}) {
     
     const navigate = useNavigate();
@@ -8,7 +10,6 @@ function Cocktail({name, rating, ingredients, instructions, image, id, handleDel
         fetch(`/cocktails/${id}`, {
             method: "DELETE", 
         }).then(resp => {
-            console.log("<----------------------->")
             if (resp.ok) {
                 handleDeleteCocktail(id)
                 navigate("/");
@@ -23,6 +24,7 @@ function Cocktail({name, rating, ingredients, instructions, image, id, handleDel
             <p>Ingredients: {ingredients}</p>
             <p>Instructions: {instructions}</p>
             <button onClick={handleDelete}>Delete Cocktail</button>
+            <ReviewContainer id={id}/>
         </div>
     );
 }
