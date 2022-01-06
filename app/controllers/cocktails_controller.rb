@@ -4,7 +4,7 @@ class CocktailsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
     #!------MUST BE REMOVED BEFORE FINISH-------->
-    # skip_before_action :authenticate_user
+    skip_before_action :authenticate_user
     #!------MUST BE REMOVED BEFORE FINISH-------->
 
     def index
@@ -28,6 +28,7 @@ class CocktailsController < ApplicationController
     end
 
     def destroy
+        # byebug
         cocktail = find_cocktail
         cocktail.destroy
         head :no_content

@@ -1,7 +1,23 @@
-function CocktailCard({name, rating, image}) {
+import { Link } from "react-router-dom";
+import Cocktail from "./Cocktail";
+
+function CocktailCard({name, rating, image, id, instructions, ingredients, setChosenCocktail, handleDeleteCocktail}) {
+
+    const buildCocktail = () => {
         
+        setChosenCocktail(<Cocktail 
+            id = {id}
+            name={name}
+            instructions={instructions}
+            image={image}
+            ingredients={ingredients}
+            rating={rating}
+            handleDeleteCocktail={handleDeleteCocktail}
+        />)
+    }
+
     return (
-        <Link className="reg-link" to="/signup">Sign up now
+        <Link className="reg-link" to={`/cocktails/${id}`} onClick={buildCocktail}>
             <div className="cocktail-card">
                 <h3>{name}</h3>
                 <h6>{rating}</h6>

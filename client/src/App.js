@@ -29,6 +29,11 @@ function App() {
     .then(data => setCocktailList(data))
     },[])
 
+    function handleDeleteCocktail(drinkToDeleteId) {
+      const updatedCocktails = cocktailList.filter((drink) => drink.id !== drinkToDeleteId);
+      setCocktailList(updatedCocktails);
+    }
+
   if (!authenticated) {
     return <div></div>;
   }
@@ -41,6 +46,7 @@ function App() {
             setCurrentUser={setCurrentUser}
             currentUser={currentUser}
             cocktailList={cocktailList}
+            handleDeleteCocktail={handleDeleteCocktail}
           />
         ) : (
           <LoggedOutLanding setCurrentUser={setCurrentUser} />
