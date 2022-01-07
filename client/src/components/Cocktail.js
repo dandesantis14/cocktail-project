@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router'
 import ReviewContainer from './ReviewContainer'
 
-function Cocktail({name, rating, ingredients, instructions, image, id, handleDeleteCocktail}) {
+function Cocktail({name, rating, ingredients, instructions, image, id, handleDeleteCocktail, currentUser}) {
     
     const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ function Cocktail({name, rating, ingredients, instructions, image, id, handleDel
             <p>Ingredients: {ingredients}</p>
             <p>Instructions: {instructions}</p>
             <button onClick={handleDelete}>Delete Cocktail</button>
-            <ReviewContainer id={id}/>
+            <ReviewContainer id={id} currentUser={currentUser}/>
         </div>
     );
 }

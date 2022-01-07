@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import Cocktail from "./Cocktail";
 
-function CocktailCard({name, rating, image, id, instructions, ingredients, setChosenCocktail, handleDeleteCocktail}) {
-
+function CocktailCard({name, rating, image, id, instructions, ingredients, setChosenCocktail, handleDeleteCocktail, currentUser}) {
+    
     const buildCocktail = () => {
         
         setChosenCocktail(<Cocktail 
@@ -12,6 +12,7 @@ function CocktailCard({name, rating, image, id, instructions, ingredients, setCh
             image={image}
             ingredients={ingredients}
             rating={rating}
+            currentUser={currentUser}
             handleDeleteCocktail={handleDeleteCocktail}
         />)
     }

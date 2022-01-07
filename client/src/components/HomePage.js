@@ -1,16 +1,19 @@
 import CocktailCard from "./CocktailCard";
 import Cocktail from "./Cocktail";
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
+import { useNavigate } from 'react-router'
 import SignUpPage from "./SignUpPage";
 import {useState} from 'react'
 
 function HomePage({ setCurrentUser, currentUser, cocktailList, handleDeleteCocktail }) {
+    const navigate = useNavigate();
 
     const [chosenCocktail,setChosenCocktail] = useState (null)
 
     const handleLogout = () => {
         setCurrentUser(null);
         fetch("/logout", { method: "DELETE" });
+        navigate('/')
     };
 
     const cocktailElements = cocktailList.map((el)=> {
@@ -22,6 +25,7 @@ function HomePage({ setCurrentUser, currentUser, cocktailList, handleDeleteCockt
             image={el.image}
             ingredients={el.ingredients}
             rating={el.rating}
+            currentUser={currentUser}
             setChosenCocktail={setChosenCocktail}
             handleDeleteCocktail={handleDeleteCocktail}
         />)
@@ -34,10 +38,6 @@ function HomePage({ setCurrentUser, currentUser, cocktailList, handleDeleteCockt
                 <button onClick={handleLogout}>Logout</button>
             </p>
             <Routes>
-                <Route
-                    path="/signup"
-                    element={<SignUpPage setCurrentUser={setCurrentUser} />}
-                />
                 <Route
                     path="/"
                     element={cocktailElements}

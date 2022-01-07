@@ -2,9 +2,7 @@ class ReviewsController < ApplicationController
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    #!------MUST BE REMOVED BEFORE FINISH-------->
-    skip_before_action :authenticate_user
-    #!------MUST BE REMOVED BEFORE FINISH-------->
+    skip_before_action :authenticate_user, only: [:cocktail_show]
 
     def user_show
         reviews = Review.find_by(user_id:params[:id])
@@ -12,14 +10,13 @@ class ReviewsController < ApplicationController
     end
 
     def cocktail_show
-        # byebug
         reviews = Cocktail.find(params[:id]).reviews
         render json: reviews
     end
 
     def update
-        if current_user
-            review = Review.find(params[:id])
+        review = Review.find(params[:id])
+        if review.user_id == @current_user.id
             review.update(review_params)
             render json: review
         else
@@ -28,14 +25,13 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        #? --------------------------user_id:current_user.id
-        review = Review.create!(review_params)
+        review = @current_user.reviews.create(review_params)
         render json: review, status: :created
     end
 
     def destroy
-        if current_user
-            review = Review.find(params[:id])
+        review = Review.find(params[:id])
+        if review.user_id == @current_user.id
             review.destroy
             head :no_content
         else

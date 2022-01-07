@@ -37,6 +37,7 @@ function App() {
   if (!authenticated) {
     return <div></div>;
   }
+
   return (
     <div>
       <h1>Cocktail Catalogger</h1>

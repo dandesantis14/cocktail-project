@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Review from './Review'
 import ReviewForm from './ReviewForm'
 
-function ReviewContainer({id}) {
-    const[reviewsList ,setReviewsList] = useState([])
+function ReviewContainer({id, currentUser}) {
 
-    const[isEditMain,setIsEditMain] = useState(false)
+    const[reviewsList ,setReviewsList] = useState([])
 
     const[reviewFormData, setReviewFormData] = useState({
         comment: "",
         rating: "",
-        user_id: "",
         cocktail_id: id,
     });
 
@@ -43,7 +41,6 @@ function ReviewContainer({id}) {
         setReviewFormData({
             comment: "",
             rating: "",
-            user_id: "",
             cocktail_id: id})
     };
 
@@ -69,6 +66,7 @@ function ReviewContainer({id}) {
                 reviewFormData={reviewFormData}
                 handleSubmit={handleSubmit}
                 reviewsList={reviewsList}
+                currentUser={currentUser}
                 setReviewsList={setReviewsList}
             />)
         })

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router'
 
 function SignUpPage({ setCurrentUser }) {
     const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ function SignUpPage({ setCurrentUser }) {
         password: "",
         age:"",
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -28,6 +31,7 @@ function SignUpPage({ setCurrentUser }) {
                 resp.json().then((user) => {
                     console.log(user);
                     setCurrentUser(user);
+                    navigate("/");
                 });
             } else {
                 resp.json().then((errors) => {
@@ -58,7 +62,7 @@ function SignUpPage({ setCurrentUser }) {
                     </div>
                     <input type="submit" className="submit" value="Sign up" />
                 </form>
-                <div className="link-text"> Already registered ? <Link class="reg-link" to="/">Sign in</Link> </div>
+                <div className="link-text"> Already registered ? <Link className="reg-link" to="/">Sign in</Link> </div>
             </div>
         </div>
     );
