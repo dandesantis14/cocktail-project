@@ -62,4 +62,3 @@ function HomePage({ setCurrentUser, currentUser, cocktailList, handleDeleteCockt
 }
 
 export default HomePage;
-
