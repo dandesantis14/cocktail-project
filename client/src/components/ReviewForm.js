@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function ReviewForm({reviewFormData, handleChange, handleSubmit}) {
     
     return (
-        <div className="form-container">
+        <div className="review-form-container">
             <form className="review-form" onSubmit={handleSubmit}>
                 <div className="field comment">
                     <div className="input-area">

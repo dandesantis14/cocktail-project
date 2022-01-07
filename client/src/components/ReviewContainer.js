@@ -72,7 +72,7 @@ function ReviewContainer({id, currentUser}) {
         })
 
     return (
-        <div>
+        <div id="review-container">
             {reviewsToDisplay}
             <ReviewForm
                 cocktailId={id}

@@ -40,7 +40,7 @@ function LoginPage({ setCurrentUser }) {
     return (
         <div className="page-container">
             <div className="form-container">
-                <header className="signin-title">Cocktail Catalogger</header>
+                <header className="signin-title">Cocktail Catalog</header>
                 <form className="signin-register" onSubmit={handleSubmit}>
                     <div className="field username">
                         <div className="input-area">

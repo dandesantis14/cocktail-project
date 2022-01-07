@@ -69,7 +69,7 @@ function Review({ user, comment, rating, id, handleDeleteReview, setReviewsList,
     console.log(user)
     console.log(currentUser)
     return (
-        <div>
+        <div className="review-card">
             {isEdit ?
                 <form className="review-form" onSubmit={handleSubmit}>
                     <h4>{user}</h4>

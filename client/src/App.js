@@ -40,7 +40,6 @@ function App() {
 
   return (
     <div>
-      <h1>Cocktail Catalogger</h1>
       <Router>
         {currentUser ? (
           <HomePage

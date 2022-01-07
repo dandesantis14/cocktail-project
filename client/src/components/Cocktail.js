@@ -1,29 +1,30 @@
-import { useNavigate } from 'react-router'
+// import { useNavigate } from 'react-router'
 import ReviewContainer from './ReviewContainer'
 
-function Cocktail({name, rating, ingredients, instructions, image, id, handleDeleteCocktail, currentUser}) {
+function Cocktail({name, ingredients, instructions, image, id, handleDeleteCocktail, currentUser}) {
     
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleDelete = () => {
+    // const handleDelete = () => {
 
-        fetch(`/cocktails/${id}`, {
-            method: "DELETE", 
-        }).then(resp => {
-            if (resp.ok) {
-                handleDeleteCocktail(id)
-                navigate("/");
-            }
-        })
-    }    
+    //     fetch(`/cocktails/${id}`, {
+    //         method: "DELETE", 
+    //     }).then(resp => {
+    //         if (resp.ok) {
+    //             handleDeleteCocktail(id)
+    //             navigate("/");
+    //         }
+    //     })
+    // }
+    
     return (
         <div className="cocktail-page">
-            <h3>{name}</h3>
-            <h6>{rating}</h6>
-            <img src={image} alt="cocktail image"/>
-            <p>Ingredients: {ingredients}</p>
-            <p>Instructions: {instructions}</p>
-            <button onClick={handleDelete}>Delete Cocktail</button>
+            <h3 id="cocktail-title" >{name}</h3>
+            <img src={image} alt="cocktail image" id="cocktail-page-image"/>
+            <p><strong>Ingredients:</strong> {ingredients}</p>
+            <p><strong>Instructions:</strong> {instructions}</p>
+            <br></br>
+            {/* <button onClick={handleDelete}>Delete Cocktail</button> */}
             <ReviewContainer id={id} currentUser={currentUser}/>
         </div>
     );
